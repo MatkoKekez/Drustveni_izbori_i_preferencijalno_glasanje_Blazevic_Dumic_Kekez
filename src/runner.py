@@ -11,9 +11,9 @@ from viz import build_majority_graph, draw_graph
 CANDIDATES = ["A", "B", "C", "D", "E"]
 
 FILES = [
-    "../data/votes4.csv",
-    "../data/votes5.csv",
-    "../data/votes6.csv",
+    "data/votes4.csv",
+    "data/votes5.csv",
+    "data/votes6.csv",
 ]
 
 def validate_file(path: str):
@@ -41,7 +41,7 @@ def validate_file(path: str):
     # =========================
 
     # gdje spremamo slike
-    os.makedirs("../results", exist_ok=True)
+    os.makedirs("results", exist_ok=True)
 
     # ime bez .csv (npr. votes4)
     base = os.path.splitext(os.path.basename(path))[0]
@@ -51,7 +51,7 @@ def validate_file(path: str):
     draw_graph(
         majG,
         title=f"Majority graf ({base})",
-        outfile=f"../results/majority_{base}.png"
+        outfile=f"results/majority_{base}.png"
     )
 
     # (2) Ranked Pairs DAG (iz rp_graph dict-a)
@@ -64,7 +64,7 @@ def validate_file(path: str):
     draw_graph(
         DAG,
         title=f"Ranked Pairs DAG ({base})",
-        outfile=f"../results/rankedpairs_{base}.png"
+        outfile=f"results/rankedpairs_{base}.png"
     )
 
 def main():
