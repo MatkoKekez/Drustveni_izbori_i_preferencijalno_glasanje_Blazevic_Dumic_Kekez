@@ -20,10 +20,9 @@ def draw_graph(G, title, outfile=None):
     plt.figure(figsize=(8, 6))
     pos = nx.circular_layout(G)  # čitljivo za 5 čvorova
 
-    nx.draw_networkx_nodes(G, pos, node_size=1500)
+    nx.draw_networkx_nodes(G, pos, node_size=900)
     nx.draw_networkx_labels(G, pos, font_size=12)
-
-    nx.draw_networkx_edges(G, pos, arrowstyle="->", arrowsize=20, width=2)
+    nx.draw_networkx_edges(G, pos, arrowstyle="->", arrowsize=20, width=2, min_target_margin=15)
 
     # label na bridovima
     edge_labels = nx.get_edge_attributes(G, "label")
