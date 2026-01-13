@@ -9,18 +9,18 @@ import networkx as nx
 
 from viz import build_majority_graph, build_schulze_graph, draw_graph
 from heatmaps import draw_pairwise_heatmap, draw_schulze_heatmap
-from matrix import save_matrix_txt  
+from matrix import save_matrix_txt
 
 
 CANDIDATES = ["A", "B", "C", "D", "E"]
 
 FILES = [
-    "../data/votes4.csv",
-    "../data/votes5.csv",
-    "../data/votes6.csv",
+    "data/votes4.csv",
+    "data/votes5.csv",
+    "data/votes6.csv",
 ]
 
-RESULTS_DIR = "../results"
+RESULTS_DIR = "results"
 
 
 def ensure_dirs(base_dir):
