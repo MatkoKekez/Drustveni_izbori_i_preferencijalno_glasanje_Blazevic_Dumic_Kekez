@@ -16,15 +16,30 @@ def build_majority_graph(pairwise, candidates):
                 G.add_edge(i, j, label=f"{pairwise[(i,j)]}-{pairwise[(j,i)]}", margin=margin)
     return G
 
+def build_schulze_graph(p, candidates):
+    """
+    Graf Schulzeovih pobjeda: i -> j ako p(i,j) > p(j,i).
+    Label je vrijednost p(i,j) (snaga najjačeg puta).
+    """
+    G = nx.DiGraph()
+    G.add_nodes_from(candidates)
+
+    for i in candidates:
+        for j in candidates:
+            if i == j:
+                continue
+            if p.get((i, j), 0) > p.get((j, i), 0):
+                G.add_edge(i, j, label=str(p[(i, j)]))
+    return G
+
 def draw_graph(G, title, outfile=None):
     plt.figure(figsize=(8, 6))
-    pos = nx.circular_layout(G)  # čitljivo za 5 čvorova
+    pos = nx.circular_layout(G)  
 
     nx.draw_networkx_nodes(G, pos, node_size=900)
     nx.draw_networkx_labels(G, pos, font_size=12)
     nx.draw_networkx_edges(G, pos, arrowstyle="->", arrowsize=20, width=2, min_target_margin=15)
 
-    # label na bridovima
     edge_labels = nx.get_edge_attributes(G, "label")
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=10)
 

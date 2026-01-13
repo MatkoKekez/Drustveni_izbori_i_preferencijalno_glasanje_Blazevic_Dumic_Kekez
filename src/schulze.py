@@ -1,6 +1,13 @@
+# schulze.py
 from itertools import permutations
 
 def schulze_method(pairwise, candidates):
+    """
+    Returns:
+      ranking: list[str]
+      winner: str
+      p: dict[(i,j)] -> int   (Schulze strongest paths matrix)
+    """
     p = { (i, j): 0 for i, j in permutations(candidates, 2) }
 
     for i, j in permutations(candidates, 2):
@@ -14,10 +21,7 @@ def schulze_method(pairwise, candidates):
             for k in candidates:
                 if i == k or j == k:
                     continue
-                p[(j, k)] = max(
-                    p[(j, k)],
-                    min(p[(j, i)], p[(i, k)])
-                )
+                p[(j, k)] = max(p[(j, k)], min(p[(j, i)], p[(i, k)]))
 
     def beats(i, j):
         return p[(i, j)] > p[(j, i)]
@@ -28,4 +32,4 @@ def schulze_method(pairwise, candidates):
         reverse=True
     )
 
-    return ranking, ranking[0]
+    return ranking, ranking[0], p
