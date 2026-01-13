@@ -1,15 +1,15 @@
-from data_loader import load_votes
-from pairwise import compute_pairwise
-from majority import find_condorcet_winner
-from ranked_pairs import ranked_pairs, ranked_pairs_winner
-from schulze import schulze_method
+from src.data_loader import load_votes
+from src.pairwise import compute_pairwise
+from src.majority import find_condorcet_winner
+from src.ranked_pairs import ranked_pairs, ranked_pairs_winner
+from src.schulze import schulze_method
 
 import os
 import networkx as nx
 
-from viz import build_majority_graph, build_schulze_graph, draw_graph
-from heatmaps import draw_pairwise_heatmap, draw_schulze_heatmap
-from matrix import save_matrix_txt
+from src.viz import build_majority_graph, build_schulze_graph, draw_graph
+from src.heatmaps import draw_pairwise_heatmap, draw_schulze_heatmap
+from src.matrix import save_matrix_txt
 
 
 CANDIDATES = ["A", "B", "C", "D", "E"]
